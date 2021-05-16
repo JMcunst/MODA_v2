@@ -19,6 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="6dp"
             android:textSize="20dp"
             android:textStyle="bold"
             android:textColor="@color/AppBlack"
@@ -30,6 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
+            android:layout_marginTop="6dp"
             android:textSize="20dp"
             android:textStyle="bold"
             android:textColor="@color/AppBlack"
@@ -40,8 +42,8 @@
             android:layout_toEndOf="@+id/main_day"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="10dp"
             android:textSize="16dp"
             android:textColor="@color/AppLightGray"
             android:text="음력 04.03" />
@@ -60,8 +62,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="10dp">
 
