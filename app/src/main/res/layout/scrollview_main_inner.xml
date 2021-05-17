@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.applikeysolutions.cosmocalendar.view.CalendarView
+            android:id="@+id/calendar_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:connectedDayIconPosition="top"
+            app:currentDayTextColor="@color/AppMainMintColor"
+            app:firstDayOfTheWeek="sunday"
+            app:orientation="horizontal"
+            app:selectedDayBackgroundColor="@color/AppMainMintLightColor"
+            app:selectedDayBackgroundEndColor="@color/AppMainMintColor"
+            app:selectedDayBackgroundStartColor="@color/AppMainMintColor"
+            app:selectedDayTextColor="#FFFFFF"
+            app:selectionType="range"
+            app:weekendDayTextColor="#ef4550" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:background="@color/AppLightMintGray"
+        android:paddingStart="5dp"
+        android:paddingTop="5dp"
+        tools:ignore="RtlSymmetry">
+
+        <TextView
+            android:id="@+id/main_schedule"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="일정"
+            android:textColor="@color/AppGray"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/main_schedule_open_close"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_toEndOf="@+id/main_schedule"
+            app:srcCompat="@drawable/ic_arrow_up_64" />
+
+        <ImageView
+            android:id="@+id/main_schedule_sort"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="3dp"
+            app:srcCompat="@drawable/ic_category_black_64" />
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/main_schedule_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:background="@color/AppLightMintGray"
+        android:paddingStart="5dp"
+        android:paddingTop="5dp"
+        tools:ignore="RtlSymmetry">
+
+        <TextView
+            android:id="@+id/main_complete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="완료"
+            android:textColor="@color/AppGray"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/main_complete_open_close"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_toEndOf="@+id/main_complete"
+            app:srcCompat="@drawable/ic_arrow_up_64" />
+
+        <ImageView
+            android:id="@+id/main_complete_sort"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="3dp"
+            app:srcCompat="@drawable/ic_category_black_64" />
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/main_complete_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

@@ -11,7 +11,9 @@
     <color name="AppGray">#9C9C9C</color>
     <color name="AppBlack">#1E1E1E</color>
     <color name="AppMainMintColor">#4BC6BB</color>
-    <color name="AppLightGray">#C3C3C3</color>
+    <color name="AppMainMintLightColor">#C2F4F0</color>
+    <color name="AppLightGray">#CDCDCD</color>
     <color name="AppLightMintGray">#D3E3E2</color>
+
 
 </resources>
