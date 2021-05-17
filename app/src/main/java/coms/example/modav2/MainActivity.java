@@ -9,6 +9,11 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+import java.util.Date;
+
+import coms.example.modav2.DTO.MainScheduleDTO;
+
 public class MainActivity extends AppCompatActivity {
     private Context context = this;
 
@@ -16,11 +21,13 @@ public class MainActivity extends AppCompatActivity {
     public ImageView iv_schedule;
     public ImageView iv_complete;
 
-    RecyclerView re_schedule;
-    RecyclerView re_complete;
+    public RecyclerView re_schedule;
+    public RecyclerView re_complete;
 
     public int state_schedule_oc = 1; // OPEN
     public int state_complete_oc = 1; // OPEN
+
+    public ArrayList<MainScheduleDTO> mainScheduleDTOs = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -34,8 +41,16 @@ public class MainActivity extends AppCompatActivity {
         iv_search = (ImageView)findViewById(R.id.main_iv_search);
         iv_schedule = (ImageView)findViewById(R.id.main_schedule_open_close);
         iv_complete = (ImageView)findViewById(R.id.main_complete_open_close);
-        re_schedule = (RecyclerView)findViewById(R.id.main_schedule_recycler);
-        re_complete = (RecyclerView)findViewById(R.id.main_complete_recycler);
+        //re_schedule = (RecyclerView)findViewById(R.id.main_schedule_recycler);
+        //re_complete = (RecyclerView)findViewById(R.id.main_complete_recycler);
+
+
+        MainScheduleDTO ms1 = new MainScheduleDTO(1,"코품미팅","프로토타입",new Date(2021,4,17),0);
+        MainScheduleDTO ms2 = new MainScheduleDTO(2,"이케아","프로토타입",new Date(2021,4,17),1);
+
+
+        mainScheduleDTOs.add(ms1);
+        mainScheduleDTOs.add(ms2);
 
         iv_search.setOnClickListener(new View.OnClickListener() {
             @Override
