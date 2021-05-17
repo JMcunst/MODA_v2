@@ -68,7 +68,7 @@
                 android:layout_marginEnd="10dp">
 
                 <ImageView
-                    android:id="@+id/imageView3"
+                    android:id="@+id/main_iv_search"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginEnd="12dp"
@@ -76,7 +76,7 @@
                     android:src="@drawable/ic_search" />
 
                 <ImageView
-                    android:id="@+id/imageView4"
+                    android:id="@+id/main_iv_setting"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginEnd="6dp"

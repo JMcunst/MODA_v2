@@ -50,6 +50,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_toEndOf="@+id/main_schedule"
+            android:layout_marginStart="6dp"
             app:srcCompat="@drawable/ic_arrow_up_64" />
 
         <ImageView
@@ -91,6 +92,7 @@
             android:id="@+id/main_complete_open_close"
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:layout_marginStart="6dp"
             android:layout_toEndOf="@+id/main_complete"
             app:srcCompat="@drawable/ic_arrow_up_64" />
 
