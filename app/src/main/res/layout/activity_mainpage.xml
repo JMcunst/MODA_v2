@@ -128,7 +128,7 @@
         android:layout_height="0dp"
         android:layout_weight="1">
 
-        <include layout="@layout/scrollview_main_inner"/>
+        <include layout="@layout/scrollview_mainpage_inner"/>
     </ScrollView>
 
     <androidx.cardview.widget.CardView

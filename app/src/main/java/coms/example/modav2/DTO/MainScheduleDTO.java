@@ -8,13 +8,17 @@ public class MainScheduleDTO {
     private String sheduleMemo;
     private Date scheduleDate;
     private int scheduleState;
+    private int schedulePin;
+    private int scheduleCategory;
 
-    public MainScheduleDTO(int scheduleId, String sheduleContent, String sheduleMemo, Date scheduleDate, int scheduleState) {
+    public MainScheduleDTO(int scheduleId, String sheduleContent, String sheduleMemo, Date scheduleDate, int scheduleState,int schedulePin, int scheduleCategory) {
         this.scheduleId = scheduleId;
         this.sheduleContent = sheduleContent;
         this.sheduleMemo = sheduleMemo;
         this.scheduleDate = scheduleDate;
         this.scheduleState = scheduleState;
+        this.schedulePin = schedulePin;
+        this.scheduleCategory = scheduleCategory;
     }
 
     public int getScheduleId() {
@@ -55,5 +59,21 @@ public class MainScheduleDTO {
 
     public void setScheduleState(int scheduleState) {
         this.scheduleState = scheduleState;
+    }
+
+    public int getSchedulePin() {
+        return schedulePin;
+    }
+
+    public void setSchedulePin(int schedulePin) {
+        this.schedulePin = schedulePin;
+    }
+
+    public int getScheduleCategory() {
+        return scheduleCategory;
+    }
+
+    public void setScheduleCategory(int scheduleCategory) {
+        this.scheduleCategory = scheduleCategory;
     }
 }

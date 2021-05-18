@@ -3,57 +3,68 @@ package coms.example.modav2.DTO;
 import java.util.Date;
 
 public class MainCompleteDTO {
-    private int scheduleId;
-    private String sheduleContent;
-    private String sheduleMemo;
-    private Date scheduleDate;
-    private int scheduleState;
+    private int completeId;
+    private String completeContent;
+    private String completeMemo;
+    private Date completeDate;
+    private int completeState;
+    private int completeCategory;
 
-    public MainCompleteDTO(int scheduleId, String sheduleContent, String sheduleMemo, Date scheduleDate, int scheduleState) {
-        this.scheduleId = scheduleId;
-        this.sheduleContent = sheduleContent;
-        this.sheduleMemo = sheduleMemo;
-        this.scheduleDate = scheduleDate;
-        this.scheduleState = scheduleState;
+
+    public MainCompleteDTO(int completeId, String completeContent, String completeMemo, Date completeDate, int completeState, int completeCategory) {
+        this.completeId = completeId;
+        this.completeContent = completeContent;
+        this.completeMemo = completeMemo;
+        this.completeDate = completeDate;
+        this.completeState = completeState;
+        this.completeCategory = completeCategory;
     }
 
-    public int getScheduleId() {
-        return scheduleId;
+    public int getCompleteId() {
+        return completeId;
     }
 
-    public void setScheduleId(int scheduleId) {
-        this.scheduleId = scheduleId;
+    public void setCompleteId(int completeId) {
+        this.completeId = completeId;
     }
 
-    public String getSheduleContent() {
-        return sheduleContent;
+    public String getCompleteContent() {
+        return completeContent;
     }
 
-    public void setSheduleContent(String sheduleContent) {
-        this.sheduleContent = sheduleContent;
+    public void setCompleteContent(String completeContent) {
+        this.completeContent = completeContent;
     }
 
-    public String getSheduleMemo() {
-        return sheduleMemo;
+    public String getCompleteMemo() {
+        return completeMemo;
     }
 
-    public void setSheduleMemo(String sheduleMemo) {
-        this.sheduleMemo = sheduleMemo;
+    public void setCompleteMemo(String completeMemo) {
+        this.completeMemo = completeMemo;
     }
 
-    public Date getScheduleDate() {
-        return scheduleDate;
+    public Date getCompleteDate() {
+        return completeDate;
     }
 
-    public void setScheduleDate(Date scheduleDate) {
-        this.scheduleDate = scheduleDate;
+    public void setCompleteDate(Date completeDate) {
+        this.completeDate = completeDate;
     }
 
-    public int getScheduleState() {
-        return scheduleState;
+    public int getCompleteState() {
+        return completeState;
     }
 
-    public void setScheduleState(int scheduleState) {
-        this.scheduleState = scheduleState;
+    public void setCompleteState(int completeState) {
+        this.completeState = completeState;
+    }
+
+    public int getCompleteCategory() {
+        return completeCategory;
+    }
+
+    public void setCompleteCategory(int completeCategory) {
+        this.completeCategory = completeCategory;
     }
 }

@@ -12,7 +12,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Date;
 
+import coms.example.modav2.DTO.MainCompleteDTO;
 import coms.example.modav2.DTO.MainScheduleDTO;
+import coms.example.modav2.adapter.MainCompleteAdapter;
+import coms.example.modav2.adapter.MainScheduleAdapter;
 
 public class MainActivity extends AppCompatActivity {
     private Context context = this;
@@ -23,11 +26,14 @@ public class MainActivity extends AppCompatActivity {
 
     public RecyclerView re_schedule;
     public RecyclerView re_complete;
+    public MainCompleteAdapter recAdapter;
+    public MainScheduleAdapter resAdapter;
 
     public int state_schedule_oc = 1; // OPEN
     public int state_complete_oc = 1; // OPEN
 
     public ArrayList<MainScheduleDTO> mainScheduleDTOs = new ArrayList<>();
+    public ArrayList<MainCompleteDTO> mainCompleteDTOs = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -41,16 +47,23 @@ public class MainActivity extends AppCompatActivity {
         iv_search = (ImageView)findViewById(R.id.main_iv_search);
         iv_schedule = (ImageView)findViewById(R.id.main_schedule_open_close);
         iv_complete = (ImageView)findViewById(R.id.main_complete_open_close);
-        //re_schedule = (RecyclerView)findViewById(R.id.main_schedule_recycler);
-        //re_complete = (RecyclerView)findViewById(R.id.main_complete_recycler);
+        re_schedule = (RecyclerView)findViewById(R.id.main_schedule_recycler);
+        re_complete = (RecyclerView)findViewById(R.id.main_complete_recycler);
 
 
-        MainScheduleDTO ms1 = new MainScheduleDTO(1,"코품미팅","프로토타입",new Date(2021,4,17),0);
-        MainScheduleDTO ms2 = new MainScheduleDTO(2,"이케아","프로토타입",new Date(2021,4,17),1);
-
+        MainScheduleDTO ms1 = new MainScheduleDTO(1,"코품미팅","프로토타입",
+                new Date(2021,4,17),0,0,1);
+        MainScheduleDTO ms2 = new MainScheduleDTO(2,"이케아","식탁&의자",
+                new Date(2021,4,17),0,1,2);
+        MainCompleteDTO mc1 = new MainCompleteDTO(3,"코품회의커밋정하기","커밋",
+                new Date(2021,4,17),1,3);
 
         mainScheduleDTOs.add(ms1);
         mainScheduleDTOs.add(ms2);
+        mainCompleteDTOs.add(mc1);
+
+        resAdapter = new MainScheduleAdapter(context, mainScheduleDTOs);
+        recAdapter = new MainCompleteAdapter(context, mainCompleteDTOs);
 
         iv_search.setOnClickListener(new View.OnClickListener() {
             @Override
