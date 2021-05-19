@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -52,11 +53,11 @@ public class MainActivity extends AppCompatActivity {
 
 
         MainScheduleDTO ms1 = new MainScheduleDTO(1,"코품미팅","프로토타입",
-                new Date(2021,4,17),0,0,1);
+                new Date(121,04,17),0,0,1);
         MainScheduleDTO ms2 = new MainScheduleDTO(2,"이케아","식탁&의자",
-                new Date(2021,4,17),0,1,2);
+                new Date(121,04,17),0,1,2);
         MainCompleteDTO mc1 = new MainCompleteDTO(3,"코품회의커밋정하기","커밋",
-                new Date(2021,4,17),1,3);
+                new Date(121,04,17),1,3);
 
         mainScheduleDTOs.add(ms1);
         mainScheduleDTOs.add(ms2);
@@ -64,6 +65,10 @@ public class MainActivity extends AppCompatActivity {
 
         resAdapter = new MainScheduleAdapter(context, mainScheduleDTOs);
         recAdapter = new MainCompleteAdapter(context, mainCompleteDTOs);
+        re_schedule.setAdapter(resAdapter);
+        re_complete.setAdapter(recAdapter);
+        re_schedule.setLayoutManager(new LinearLayoutManager(this));
+        re_complete.setLayoutManager(new LinearLayoutManager(this));
 
         iv_search.setOnClickListener(new View.OnClickListener() {
             @Override

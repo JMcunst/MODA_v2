@@ -12,8 +12,8 @@
 
     <ImageView
         android:id="@+id/main_schedule_item_img_category"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         app:srcCompat="@drawable/ic_account"
         android:layout_marginStart="10dp"
         android:layout_marginTop="4dp"
@@ -21,15 +21,19 @@
         android:layout_marginEnd="10dp"/>
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:layout_width="265dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp">
 
         <TextView
             android:id="@+id/main_schedule_item_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="24dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
             android:textStyle="bold"
             android:textColor="@color/AppBlack"
             android:text="코품미팅" />
@@ -39,31 +43,34 @@
             android:layout_below="@+id/main_schedule_item_content"
             android:layout_width="20dp"
             android:layout_height="20dp"
+            android:layout_marginEnd="5dp"
             app:srcCompat="@drawable/ic_add_a_photo" />
 
         <ImageView
             android:id="@+id/main_schedule_item_memo"
-            android:layout_toRightOf="@+id/main_schedule_item_pin"
+            android:layout_toEndOf="@+id/main_schedule_item_pin"
             android:layout_below="@+id/main_schedule_item_content"
             android:layout_width="20dp"
             android:layout_height="20dp"
+            android:layout_marginEnd="5dp"
             app:srcCompat="@drawable/ic_calendar_black_48" />
 
         <TextView
             android:id="@+id/main_schedule_item_date"
-            android:layout_toRightOf="@+id/main_schedule_item_memo"
+            android:layout_toEndOf="@+id/main_schedule_item_memo"
             android:layout_below="@+id/main_schedule_item_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16dp"
+            android:textSize="14dp"
             android:textColor="@color/AppGray"
             android:text="2021.05.17" />
     </RelativeLayout>
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/main_re_sch_check"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/ic_arrow_down_48"
+        android:layout_marginTop="12dp"
         />
 </LinearLayout>

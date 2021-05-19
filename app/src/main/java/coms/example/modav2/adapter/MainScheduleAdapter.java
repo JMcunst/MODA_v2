@@ -1,5 +1,6 @@
 package coms.example.modav2.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +11,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import coms.example.modav2.DTO.MainScheduleDTO;
 import coms.example.modav2.R;
@@ -52,7 +56,9 @@ public class MainScheduleAdapter extends RecyclerView.Adapter<MainScheduleAdapte
     @Override
     public void onBindViewHolder(@NonNull MainScheduleAdapter.ViewHolder holder, int position) {
         holder.schContent.setText(mslists.get(position).getSheduleContent());
-        holder.schDate.setText((CharSequence) mslists.get(position).getScheduleDate());
+        @SuppressLint("SimpleDateFormat") DateFormat df = new SimpleDateFormat("yyyy.mm.dd");
+        String dateToString = df.format(mslists.get(position).getScheduleDate());
+        holder.schDate.setText(dateToString);
         holder.schCategory.setImageResource(R.drawable.ic_account);
         if(mslists.get(position).getSchedulePin() == 1){
             holder.schPin.setImageResource(R.drawable.ic_pin_black_48);

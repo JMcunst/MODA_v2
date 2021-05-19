@@ -1,5 +1,6 @@
 package coms.example.modav2.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -53,7 +56,9 @@ public class MainCompleteAdapter extends RecyclerView.Adapter<MainCompleteAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.cmpContent.setText(mclists.get(position).getCompleteContent());
-        holder.cmpDate.setText((CharSequence) mclists.get(position).getCompleteDate());
+        @SuppressLint("SimpleDateFormat") DateFormat df = new SimpleDateFormat("yyyy-mm-dd");
+        String dateToString = df.format(mclists.get(position).getCompleteDate());
+        holder.cmpDate.setText(dateToString);
         holder.cmpCategory.setImageResource(R.drawable.ic_account);
     }
 
