@@ -73,7 +73,27 @@ public class MainScheduleAdapter extends RecyclerView.Adapter<MainScheduleAdapte
             holder.schMemo.setVisibility(View.GONE);
         }
         // 스케줄 카테고리
-        holder.schCategory.setImageResource(R.drawable.ic_account);
+        switch (mslists.get(position).getScheduleCategory()){
+            case 0 :        // 카테고리 x
+                holder.schCategory.setImageResource(R.drawable.cate_no);
+                break;
+            case 1 :        // 전체
+                holder.schCategory.setImageResource(R.drawable.cate_all);
+                break;
+            case 2 :        // 집
+                holder.schCategory.setImageResource(R.drawable.cate_home);
+                break;
+            case 3 :        // 회사
+                holder.schCategory.setImageResource(R.drawable.cate_company);
+                break;
+            case 4 :        // 공부
+                holder.schCategory.setImageResource(R.drawable.cate_study);
+                break;
+            case 5 :        // 쇼핑
+                holder.schCategory.setImageResource(R.drawable.cate_shopping);
+                break;
+        }
+
         // 스케줄 고정
         if(mslists.get(position).getSchedulePin() == 1){
             holder.schPin.setImageResource(R.drawable.ic_pin_black_48);
