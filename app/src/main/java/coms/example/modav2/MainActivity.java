@@ -13,9 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Date;
 
-import coms.example.modav2.DTO.MainCompleteDTO;
 import coms.example.modav2.DTO.MainScheduleDTO;
-import coms.example.modav2.adapter.MainCompleteAdapter;
 import coms.example.modav2.adapter.MainScheduleAdapter;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,14 +25,12 @@ public class MainActivity extends AppCompatActivity {
 
     public RecyclerView re_schedule;
     public RecyclerView re_complete;
-    public MainCompleteAdapter recAdapter;
     public MainScheduleAdapter resAdapter;
 
     public int state_schedule_oc = 1; // OPEN
     public int state_complete_oc = 1; // OPEN
 
     public ArrayList<MainScheduleDTO> mainScheduleDTOs = new ArrayList<>();
-    public ArrayList<MainCompleteDTO> mainCompleteDTOs = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -53,22 +49,33 @@ public class MainActivity extends AppCompatActivity {
 
 
         MainScheduleDTO ms1 = new MainScheduleDTO(1,"코품미팅","프로토타입",
-                new Date(121,04,17),0,0,1);
+                new Date(121, 4,17),0,0,1,0);
         MainScheduleDTO ms2 = new MainScheduleDTO(2,"이케아","식탁&의자",
-                new Date(121,04,17),0,1,2);
-        MainCompleteDTO mc1 = new MainCompleteDTO(3,"코품회의커밋정하기","커밋",
-                new Date(121,04,17),1,3);
+                new Date(121, 4,17),0,1,2,0);
+        MainScheduleDTO mc1 = new MainScheduleDTO(3,"코품회의커밋정하기","커밋",
+                new Date(121, 4,17),1,3,3,0);
 
         mainScheduleDTOs.add(ms1);
         mainScheduleDTOs.add(ms2);
-        mainCompleteDTOs.add(mc1);
+        mainScheduleDTOs.add(mc1);
 
         resAdapter = new MainScheduleAdapter(context, mainScheduleDTOs);
-        recAdapter = new MainCompleteAdapter(context, mainCompleteDTOs);
         re_schedule.setAdapter(resAdapter);
-        re_complete.setAdapter(recAdapter);
+        re_complete.setAdapter(resAdapter);
         re_schedule.setLayoutManager(new LinearLayoutManager(this));
         re_complete.setLayoutManager(new LinearLayoutManager(this));
+//        re_schedule.setLayoutManager(new LinearLayoutManager(this){
+//            @Override
+//            public boolean canScrollVertically() { // 세로스크롤 막기
+//                return false;
+//            }
+//        });
+//        re_complete.setLayoutManager(new LinearLayoutManager(this){
+//            @Override
+//            public boolean canScrollVertically() { // 세로스크롤 막기
+//                return false;
+//            }
+//        });
 
         iv_search.setOnClickListener(new View.OnClickListener() {
             @Override
