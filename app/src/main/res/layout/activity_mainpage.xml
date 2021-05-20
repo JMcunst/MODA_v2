@@ -146,18 +146,18 @@
 
             android:layout_marginTop="10dp">
             <ImageView
-                android:id="@+id/main_category"
+                android:id="@+id/main_category_add"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginTop="17dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="3dp"
-                app:srcCompat="@drawable/ic_category_black_64" />
+                app:srcCompat="@drawable/ic_category_mintgray_checked_96" />
 
             <ImageView
-                android:id="@+id/main_calendar"
-                android:layout_toEndOf="@+id/main_category"
+                android:id="@+id/main_calendar_add"
+                android:layout_toEndOf="@+id/main_category_add"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginTop="17dp"
