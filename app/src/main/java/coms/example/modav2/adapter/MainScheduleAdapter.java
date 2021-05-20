@@ -24,7 +24,7 @@ import coms.example.modav2.R;
 public class MainScheduleAdapter extends RecyclerView.Adapter<MainScheduleAdapter.ViewHolder> {
     private ArrayList<MainScheduleDTO> mslists = new ArrayList<>();
     private Context mcontext;
-    private int scc = 0;
+    private int scc = 0; // 삭제 요망
 
     public MainScheduleAdapter(Context context, ArrayList<MainScheduleDTO> mslists) {
         this.mcontext = context;
@@ -69,6 +69,8 @@ public class MainScheduleAdapter extends RecyclerView.Adapter<MainScheduleAdapte
         // 스케줄 메모
         if(mslists.get(position).getSheduleMemo() != null){
             holder.schMemo.setImageResource(R.drawable.ic_memonote_52);
+        }else{
+            holder.schMemo.setVisibility(View.GONE);
         }
         // 스케줄 카테고리
         holder.schCategory.setImageResource(R.drawable.ic_account);
@@ -76,19 +78,29 @@ public class MainScheduleAdapter extends RecyclerView.Adapter<MainScheduleAdapte
         if(mslists.get(position).getSchedulePin() == 1){
             holder.schPin.setImageResource(R.drawable.ic_pin_black_48);
         }else{
-
+            holder.schPin.setVisibility(View.GONE);
         }
         //스케줄 상태
+        if(mslists.get(position).getScheduleState() == 0) {
+            holder.schCheck.setImageResource(R.drawable.ic_check_50);
+        }else{
+            holder.schCheck.setImageResource(R.drawable.ic_checked_50);
+        }
+
+        /*** 클릭 리스너 ***/
+        // 스케줄 상태
         holder.schCheck.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 if(scc == 0) {
                     holder.schCheck.setImageResource(R.drawable.ic_checked_50);
-                    scc = 1;
+                    mslists.get(position).setScheduleState(1);
+                    scc = 1; // 삭제 요망
                     Log.v("cccccccccc","cccccccccccc");
                 }else{
                     holder.schCheck.setImageResource(R.drawable.ic_check_50);
-                    scc = 0;
+                    mslists.get(position).setScheduleState(0);
+                    scc = 0; // 삭제 요망
                     Log.v("kkkkkkkkkkkkkkk","kkkkkkkkkkk");
                 }
             }
