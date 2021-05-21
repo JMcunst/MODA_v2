@@ -1,5 +1,6 @@
 package coms.example.modav2;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.icu.util.ChineseCalendar;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -37,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
     public RecyclerView re_complete;
     public MainScheduleAdapter resAdapter;
     public MainScheduleAdapter recAdapter;
+
+    public CardView crd_category;
+    public CardView crd_calendar;
 
     public Date date;
     public long nowtime;
@@ -69,6 +74,9 @@ public class MainActivity extends AppCompatActivity {
         tv_date = (TextView)findViewById(R.id.main_date);
         tv_day = (TextView)findViewById(R.id.main_day);
         tv_lunar = (TextView)findViewById(R.id.main_lunar);
+
+        crd_category = (CardView)findViewById(R.id.main_add_category_card);
+        crd_calendar = (CardView)findViewById(R.id.main_add_calendar_card);
 
         /*** recycler items ***/
         MainScheduleDTO ms1 = new MainScheduleDTO(1,"코품미팅","프로토타입",
@@ -135,22 +143,28 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         iv_category_add.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceAsColor")
             @Override
             public void onClick(View v) {
                 if(state_cate_cal_direction == 1) {
-                    iv_category_add.setImageResource(R.drawable.ic_category_mintgray_checked_96);
-                    iv_calendar_add.setImageResource(R.drawable.ic_calendar_black_48);
                     state_cate_cal_direction = 0;
+                    iv_category_add.setImageResource(R.drawable.ic_category_mintgray_checked_96);
+                    crd_category.setCardBackgroundColor(R.color.AppLightMintGray);
+                    iv_calendar_add.setImageResource(R.drawable.ic_calendar_black_48);
+                    crd_calendar.setCardBackgroundColor(R.color.white);
                 }
             }
         });
         iv_calendar_add.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceAsColor")
             @Override
             public void onClick(View v) {
                 if(state_cate_cal_direction == 0) {
-                    iv_category_add.setImageResource(R.drawable.ic_category_black_64);
-                    iv_calendar_add.setImageResource(R.drawable.ic_calendar_mintgray_checked_96);
                     state_cate_cal_direction = 1;
+                    iv_category_add.setImageResource(R.drawable.ic_category_black_64);
+                    crd_category.setCardBackgroundColor(R.color.white);
+                    iv_calendar_add.setImageResource(R.drawable.ic_calendar_mintgray_checked_96);
+                    crd_calendar.setCardBackgroundColor(R.color.AppLightMintGray);
                 }
             }
         });
@@ -161,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
     public String getCurrentDate(){
         nowtime = System.currentTimeMillis();
         date = new Date(nowtime);
-        SimpleDateFormat sdf = new SimpleDateFormat("d일");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("d일");
         String nowdate = sdf.format(date);
 
         return nowdate;
@@ -170,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
     public String getCurrentDay(){
         nowtime = System.currentTimeMillis();
         date = new Date(nowtime);
-        SimpleDateFormat sdf = new SimpleDateFormat("E요일");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("E요일");
         String nowday = sdf.format(date);
 
         return nowday;
@@ -179,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
     public String getCurrentYearMonthDate(){
         nowtime = System.currentTimeMillis();
         date = new Date(nowtime);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyymmdd");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("yyyymmdd");
         String nowymd = sdf.format(date);
 
         return nowymd;
