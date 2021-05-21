@@ -2,15 +2,19 @@ package coms.example.modav2;
 
 import android.content.Context;
 import android.content.Intent;
+import android.icu.util.ChineseCalendar;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import coms.example.modav2.DTO.MainScheduleDTO;
@@ -25,10 +29,17 @@ public class MainActivity extends AppCompatActivity {
     public ImageView iv_category_add;
     public ImageView iv_calendar_add;
 
+    public TextView tv_date;
+    public TextView tv_day;
+    public TextView tv_lunar;
+
     public RecyclerView re_schedule;
     public RecyclerView re_complete;
     public MainScheduleAdapter resAdapter;
     public MainScheduleAdapter recAdapter;
+
+    public Date date;
+    public long nowtime;
 
     public int state_schedule_oc = 1; // OPEN
     public int state_complete_oc = 1; // OPEN
@@ -46,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setView(){
+        /*** binding ***/
         iv_search = (ImageView)findViewById(R.id.main_iv_search);
         iv_schedule = (ImageView)findViewById(R.id.main_schedule_open_close);
         iv_complete = (ImageView)findViewById(R.id.main_complete_open_close);
@@ -54,7 +66,11 @@ public class MainActivity extends AppCompatActivity {
         iv_category_add = (ImageView)findViewById(R.id.main_category_add);
         iv_calendar_add = (ImageView)findViewById(R.id.main_calendar_add);
 
+        tv_date = (TextView)findViewById(R.id.main_date);
+        tv_day = (TextView)findViewById(R.id.main_day);
+        tv_lunar = (TextView)findViewById(R.id.main_lunar);
 
+        /*** recycler items ***/
         MainScheduleDTO ms1 = new MainScheduleDTO(1,"코품미팅","프로토타입",
                 new Date(121, 4,17),0,0,1,0);
         MainScheduleDTO ms2 = new MainScheduleDTO(2,"이케아","식탁&의자",
@@ -72,19 +88,17 @@ public class MainActivity extends AppCompatActivity {
         re_complete.setAdapter(recAdapter);
         re_schedule.setLayoutManager(new LinearLayoutManager(this));
         re_complete.setLayoutManager(new LinearLayoutManager(this));
-//        re_schedule.setLayoutManager(new LinearLayoutManager(this){
-//            @Override
-//            public boolean canScrollVertically() { // 세로스크롤 막기
-//                return false;
-//            }
-//        });
-//        re_complete.setLayoutManager(new LinearLayoutManager(this){
-//            @Override
-//            public boolean canScrollVertically() { // 세로스크롤 막기
-//                return false;
-//            }
-//        });
 
+        /*** nowdate, day, lunar ***/
+        String nowdate = getCurrentDate();
+        String nowday = getCurrentDay();
+        String lunardate = getSolarToLunar(getCurrentYearMonthDate());
+
+        tv_date.setText(nowdate);
+        tv_day.setText(nowday);
+        tv_lunar.setText(lunardate);
+
+        /*** listener ***/
         iv_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -141,5 +155,82 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
     }
+
+    public String getCurrentDate(){
+        nowtime = System.currentTimeMillis();
+        date = new Date(nowtime);
+        SimpleDateFormat sdf = new SimpleDateFormat("d일");
+        String nowdate = sdf.format(date);
+
+        return nowdate;
+    }
+
+    public String getCurrentDay(){
+        nowtime = System.currentTimeMillis();
+        date = new Date(nowtime);
+        SimpleDateFormat sdf = new SimpleDateFormat("E요일");
+        String nowday = sdf.format(date);
+
+        return nowday;
+    }
+
+    public String getCurrentYearMonthDate(){
+        nowtime = System.currentTimeMillis();
+        date = new Date(nowtime);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyymmdd");
+        String nowymd = sdf.format(date);
+
+        return nowymd;
+    }
+    /***음력 월.일 계산***/
+    public static String getSolarToLunar(String yyyymmdd) {
+        ChineseCalendar cc = new ChineseCalendar();
+        Calendar cal = Calendar.getInstance();
+
+        if (yyyymmdd == null)
+            return "";
+
+        /*** 쓰기 ***/
+        String date = yyyymmdd.trim() ;
+        if( date.length() != 8 ) {
+            if( date.length() == 4 )
+                date = date + "0101" ;
+            else if( date.length() == 6 )
+                date = date + "01" ;
+            else if( date.length() > 8 )
+                date = date.substring(0,8) ;
+            else
+                return "" ;
+        }
+
+        cal.set( Calendar.YEAR, Integer.parseInt(date.substring(0,4)) ) ;
+        cal.set( Calendar.MONTH, Integer.parseInt(date.substring(4,6))-1 ) ;
+        cal.set( Calendar.DAY_OF_MONTH, Integer.parseInt(date.substring(6)) ) ;
+
+        cc.setTimeInMillis( cal.getTimeInMillis() ) ;
+        /*** 읽기 ***/
+        // ChinessCalendar.YEAR 는 1~60 까지의 값만 가지고 ,
+        // ChinessCalendar.EXTENDED_YEAR 는 Calendar.YEAR 값과 2639 만큼의 차이를 가진다.
+        //int y = cc.get(ChineseCalendar.EXTENDED_YEAR)-2639 ;
+        int m = cc.get(ChineseCalendar.MONTH)-2 ;
+        int d = cc.get(ChineseCalendar.DAY_OF_MONTH)-8 ;
+
+        StringBuffer ret = new StringBuffer() ;
+//        if( y < 1000 )          ret.append( "0" ) ;
+//        else if( y < 100 )      ret.append( "00" ) ;
+//        else if( y < 10 )       ret.append( "000" ) ;
+//        ret.append( y ) ;
+        ret.append("음력 ");
+        if( m < 10 ) ret.append( "0" ) ;
+        ret.append( m ) ;
+        ret.append(". ");
+        if( d < 10 ) ret.append( "0" ) ;
+        ret.append( d ) ;
+
+        String nowlunar = ret.toString() ;
+        return nowlunar;
+    }
+
 }

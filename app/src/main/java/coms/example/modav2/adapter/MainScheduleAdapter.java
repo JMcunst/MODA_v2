@@ -63,7 +63,8 @@ public class MainScheduleAdapter extends RecyclerView.Adapter<MainScheduleAdapte
         // 스케줄 내용
         holder.schContent.setText(mslists.get(position).getSheduleContent());
         // 스케줄 날짜
-        @SuppressLint("SimpleDateFormat") DateFormat df = new SimpleDateFormat("yyyy.mm.dd");
+        @SuppressLint("SimpleDateFormat") DateFormat df = new SimpleDateFormat("yyyy.MM.dd");
+        Log.v("ddddddddddddd",mslists.get(position).getScheduleDate().toString());
         String dateToString = df.format(mslists.get(position).getScheduleDate());
         holder.schDate.setText(dateToString);
         // 스케줄 메모
