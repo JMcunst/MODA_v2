@@ -101,7 +101,7 @@
         android:id="@+id/main_add_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/roundshape_main_card_add"
+        android:background="@drawable/roundshape_rlayout"
         android:elevation="36dp"
         >
 
@@ -109,8 +109,7 @@
             android:id="@+id/main_add_relayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="6dp"
-            android:layout_marginTop="6dp">
+            android:background="@drawable/roundshape_rlayout">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/main_add_category_card"
