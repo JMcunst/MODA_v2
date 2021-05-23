@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
     public CardView crd_category;
     public CardView crd_calendar;
+    public CardView crd_plus;
 
     public Date date;
     public long nowtime;
@@ -77,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
         crd_category = (CardView)findViewById(R.id.main_add_category_card);
         crd_calendar = (CardView)findViewById(R.id.main_add_calendar_card);
+        crd_plus = (CardView)findViewById(R.id.main_add_plus_card);
 
         /*** recycler items ***/
         MainScheduleDTO ms1 = new MainScheduleDTO(1,"코품미팅","프로토타입",
@@ -166,6 +169,12 @@ public class MainActivity extends AppCompatActivity {
                     iv_calendar_add.setImageResource(R.drawable.ic_calendar_mintgray_checked_96);
                     crd_calendar.setCardBackgroundColor(R.color.AppLightMintGray);
                 }
+            }
+        });
+        crd_plus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "할일을 추가하겠습니다", Toast.LENGTH_SHORT).show();
             }
         });
 
