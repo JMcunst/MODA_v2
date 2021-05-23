@@ -25,6 +25,7 @@ public class MainScheduleAdapter extends RecyclerView.Adapter<MainScheduleAdapte
     private ArrayList<MainScheduleDTO> mslists = new ArrayList<>();
     private Context mcontext;
     private int scc = 0; // 삭제 요망
+    private int cur_pin = 1;
 
     public MainScheduleAdapter(Context context, ArrayList<MainScheduleDTO> mslists) {
         this.mcontext = context;
@@ -98,6 +99,7 @@ public class MainScheduleAdapter extends RecyclerView.Adapter<MainScheduleAdapte
         // 스케줄 고정
         if(mslists.get(position).getSchedulePin() == 1){
             holder.schPin.setImageResource(R.drawable.ic_pin_black_48);
+            onItemMoveByPin(position);
         }else{
             holder.schPin.setVisibility(View.GONE);
         }
@@ -129,6 +131,20 @@ public class MainScheduleAdapter extends RecyclerView.Adapter<MainScheduleAdapte
 
 
     }
+
+    public void onItemMoveByPin(int from_position) {
+        //이동할 객체 저장
+        MainScheduleDTO msch = mslists.get(from_position);
+        //이동할 객체 삭제
+        mslists.remove(from_position);
+        //이동하고 싶은 position에 추가
+        mslists.add(cur_pin,msch);
+        //Adapter에 데이터 이동알림
+        notifyItemMoved(from_position,cur_pin);
+        cur_pin++;
+    }
+
+
 
 
     @Override
