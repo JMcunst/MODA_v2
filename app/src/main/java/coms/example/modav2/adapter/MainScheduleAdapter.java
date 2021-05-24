@@ -24,8 +24,8 @@ import coms.example.modav2.R;
 public class MainScheduleAdapter extends RecyclerView.Adapter<MainScheduleAdapter.ViewHolder> {
     private ArrayList<MainScheduleDTO> mslists = new ArrayList<>();
     private Context mcontext;
-    private int scc = 0; // 삭제 요망
-    private int cur_pin = 1;
+    private int scc = 0; // 스케줄 체크 되었는지 확인 하는 변수
+    private int cur_pin = 1; // 핀 위치 위치 변수
 
     public MainScheduleAdapter(Context context, ArrayList<MainScheduleDTO> mslists) {
         this.mcontext = context;
@@ -118,12 +118,12 @@ public class MainScheduleAdapter extends RecyclerView.Adapter<MainScheduleAdapte
                 if(scc == 0) {
                     holder.schCheck.setImageResource(R.drawable.ic_checked_50);
                     mslists.get(position).setScheduleState(1);
-                    scc = 1; // 삭제 요망
+                    scc = 1;
                     Log.v("cccccccccc","cccccccccccc");
                 }else{
                     holder.schCheck.setImageResource(R.drawable.ic_check_50);
                     mslists.get(position).setScheduleState(0);
-                    scc = 0; // 삭제 요망
+                    scc = 0;
                     Log.v("kkkkkkkkkkkkkkk","kkkkkkkkkkk");
                 }
             }
