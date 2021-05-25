@@ -5,12 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.icu.util.ChineseCalendar;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -177,7 +179,50 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(context, "할일을 추가하겠습니다", Toast.LENGTH_SHORT).show();
             }
         });
+        findViewById(R.id.main_complete_sort).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View view) {
+                final PopupMenu popupMenu = new PopupMenu(getApplicationContext(),view);
+                getMenuInflater().inflate(R.menu.schedule_menu,popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                        if (menuItem.getItemId() == R.id.action_sort_reg){
+                            Toast.makeText(MainActivity.this, "등록순 클릭", Toast.LENGTH_SHORT).show();
+                        }else if (menuItem.getItemId() == R.id.action_sort_name){
+                            Toast.makeText(MainActivity.this, "이름순 클릭", Toast.LENGTH_SHORT).show();
+                        }else {
+                            Toast.makeText(MainActivity.this, "시간빠른순 클릭", Toast.LENGTH_SHORT).show();
+                        }
 
+                        return false;
+                    }
+                });
+                popupMenu.show();
+            }
+        });
+        findViewById(R.id.main_schedule_sort).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View view) {
+                final PopupMenu popupMenu = new PopupMenu(getApplicationContext(),view);
+                getMenuInflater().inflate(R.menu.schedule_menu,popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                        if (menuItem.getItemId() == R.id.action_sort_reg){
+                            Toast.makeText(MainActivity.this, "등록순 클릭", Toast.LENGTH_SHORT).show();
+                        }else if (menuItem.getItemId() == R.id.action_sort_name){
+                            Toast.makeText(MainActivity.this, "이름순 클릭", Toast.LENGTH_SHORT).show();
+                        }else {
+                            Toast.makeText(MainActivity.this, "시간빠른순 클릭", Toast.LENGTH_SHORT).show();
+                        }
+
+                        return false;
+                    }
+                });
+                popupMenu.show();
+            }
+        });
 
     }
 
