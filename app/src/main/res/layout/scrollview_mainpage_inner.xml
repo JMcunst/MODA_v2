@@ -69,6 +69,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:overScrollMode="never"
+        android:nestedScrollingEnabled="false"
         android:descendantFocusability="blocksDescendants"
         />
 
@@ -115,6 +116,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:overScrollMode="never"
+        android:nestedScrollingEnabled="false"
         android:descendantFocusability="blocksDescendants"
         />
 

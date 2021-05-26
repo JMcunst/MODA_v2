@@ -2,6 +2,7 @@ package coms.example.modav2.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.text.DateFormat;
@@ -56,12 +58,13 @@ public class MainScheduleAdapter extends RecyclerView.Adapter<MainScheduleAdapte
                 public void onClick(View v) {
                     int pos = getAdapterPosition() ;
                     if (pos != RecyclerView.NO_POSITION) {
-                        MainScheduleDTO msh = mslists.get(pos);
-                        if(msh.getSchedulePin() == 1) {
-                            msh.setSchedulePin(0);
-                            mslists.set(pos,msh);
-                        }
-                        notifyItemChanged(pos);
+                        dialogPin(pos);
+//                        MainScheduleDTO msh = mslists.get(pos);
+//                        if(msh.getSchedulePin() == 1) {
+//                            msh.setSchedulePin(0);
+//                            mslists.set(pos,msh);
+//                        }
+//                        notifyItemChanged(pos);
                     }
                 }
             });
@@ -116,6 +119,7 @@ public class MainScheduleAdapter extends RecyclerView.Adapter<MainScheduleAdapte
         if(mslists.get(position).getSchedulePin() == 1){
             holder.schPin.setImageResource(R.drawable.ic_pin_black_48);
             MoveItemPin(position);
+
         }else{
             holder.schPin.setVisibility(View.GONE);
         }
@@ -151,15 +155,40 @@ public class MainScheduleAdapter extends RecyclerView.Adapter<MainScheduleAdapte
     private void MoveItemPin(int position) {
         int pos = position;
         if (pos != RecyclerView.NO_POSITION) {
-            MainScheduleDTO msh = mslists.get(pos);
-            if(msh.getSchedulePin() == 1) {
-                msh.setSchedulePin(0);
-                mslists.set(pos,msh);
-            }
+            MainScheduleDTO tmsh = mslists.get(pos);
+            MainScheduleDTO omsh = mslists.get(cur_pin);
+            mslists.remove(pos);
+            mslists.add(cur_pin,tmsh);
+            mslists.add(pos,omsh);
             cur_pin++;
-            notifyItemChanged(pos);
         }
 
+    }
+
+    void dialogPin(int pos){
+        Log.v("dddddddddddddddd","start");
+        AlertDialog.Builder builder = new AlertDialog.Builder(mcontext);
+        builder.setTitle(" ");
+        builder.setMessage("고정핀을 제거하시겠습니까?");
+        Log.v("dddd2222222222","start222222");
+        builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                MainScheduleDTO msh = mslists.get(pos);
+                if(msh.getSchedulePin() == 1) {
+                    msh.setSchedulePin(0);
+                    mslists.set(pos,msh);
+                }
+                notifyItemChanged(pos);
+            }
+        });
+        builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        builder.show();
     }
 
 
