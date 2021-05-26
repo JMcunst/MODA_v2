@@ -58,6 +58,7 @@ public class MainScheduleAdapter extends RecyclerView.Adapter<MainScheduleAdapte
                 public void onClick(View v) {
                     int pos = getAdapterPosition() ;
                     if (pos != RecyclerView.NO_POSITION) {
+                        Log.v("pospospospospos","pos : "+pos);
                         dialogPin(pos);
 //                        MainScheduleDTO msh = mslists.get(pos);
 //                        if(msh.getSchedulePin() == 1) {
@@ -166,20 +167,20 @@ public class MainScheduleAdapter extends RecyclerView.Adapter<MainScheduleAdapte
     }
 
     void dialogPin(int pos){
-        Log.v("dddddddddddddddd","start");
         AlertDialog.Builder builder = new AlertDialog.Builder(mcontext);
         builder.setTitle(" ");
         builder.setMessage("고정핀을 제거하시겠습니까?");
-        Log.v("dddd2222222222","start222222");
         builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                Log.v("pospospospospos","pos : "+pos);
                 MainScheduleDTO msh = mslists.get(pos);
                 if(msh.getSchedulePin() == 1) {
                     msh.setSchedulePin(0);
                     mslists.set(pos,msh);
                 }
                 notifyItemChanged(pos);
+                Log.v("pospospospospos","pos : "+pos);
             }
         });
         builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
