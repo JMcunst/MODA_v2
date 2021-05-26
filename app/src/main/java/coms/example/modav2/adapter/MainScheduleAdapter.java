@@ -2,6 +2,7 @@ package coms.example.modav2.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,7 +26,7 @@ public class MainScheduleAdapter extends RecyclerView.Adapter<MainScheduleAdapte
     private ArrayList<MainScheduleDTO> mslists = new ArrayList<>();
     private Context mcontext;
     private int scc = 0; // 스케줄 체크 되었는지 확인 하는 변수
-    private int cur_pin = 1; // 핀 위치 위치 변수
+    private int cur_pin = 0; // 핀 위치 위치 변수
 
     public MainScheduleAdapter(Context context, ArrayList<MainScheduleDTO> mslists) {
         this.mcontext = context;
@@ -49,6 +50,21 @@ public class MainScheduleAdapter extends RecyclerView.Adapter<MainScheduleAdapte
             this.schCategory = (ImageView)view.findViewById(R.id.main_schedule_item_img_category);
             this.schPin = (ImageView)view.findViewById(R.id.main_schedule_item_pin);
             this.schCheck = (ImageView)view.findViewById(R.id.main_re_sch_check);
+
+            this.schPin.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = getAdapterPosition() ;
+                    if (pos != RecyclerView.NO_POSITION) {
+                        MainScheduleDTO msh = mslists.get(pos);
+                        if(msh.getSchedulePin() == 1) {
+                            msh.setSchedulePin(0);
+                            mslists.set(pos,msh);
+                        }
+                        notifyItemChanged(pos);
+                    }
+                }
+            });
         }
     }
     @NonNull
@@ -99,7 +115,7 @@ public class MainScheduleAdapter extends RecyclerView.Adapter<MainScheduleAdapte
         // 스케줄 고정
         if(mslists.get(position).getSchedulePin() == 1){
             holder.schPin.setImageResource(R.drawable.ic_pin_black_48);
-            onItemMoveByPin(position);
+            MoveItemPin(position);
         }else{
             holder.schPin.setVisibility(View.GONE);
         }
@@ -132,19 +148,19 @@ public class MainScheduleAdapter extends RecyclerView.Adapter<MainScheduleAdapte
 
     }
 
-    public void onItemMoveByPin(int from_position) {
-        //이동할 객체 저장
-        MainScheduleDTO msch = mslists.get(from_position);
-        //이동할 객체 삭제
-        mslists.remove(from_position);
-        //이동하고 싶은 position에 추가
-        mslists.add(cur_pin,msch);
-        //Adapter에 데이터 이동알림
-        notifyItemMoved(from_position,cur_pin);
-        cur_pin++;
+    private void MoveItemPin(int position) {
+        int pos = position;
+        if (pos != RecyclerView.NO_POSITION) {
+            MainScheduleDTO msh = mslists.get(pos);
+            if(msh.getSchedulePin() == 1) {
+                msh.setSchedulePin(0);
+                mslists.set(pos,msh);
+            }
+            cur_pin++;
+            notifyItemChanged(pos);
+        }
+
     }
-
-
 
 
     @Override
