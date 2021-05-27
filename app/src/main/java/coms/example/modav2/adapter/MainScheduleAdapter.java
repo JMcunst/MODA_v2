@@ -58,14 +58,7 @@ public class MainScheduleAdapter extends RecyclerView.Adapter<MainScheduleAdapte
                 public void onClick(View v) {
                     int pos = getAdapterPosition() ;
                     if (pos != RecyclerView.NO_POSITION) {
-                        Log.v("pospospospospos","pos : "+pos);
                         dialogPin(pos);
-//                        MainScheduleDTO msh = mslists.get(pos);
-//                        if(msh.getSchedulePin() == 1) {
-//                            msh.setSchedulePin(0);
-//                            mslists.set(pos,msh);
-//                        }
-//                        notifyItemChanged(pos);
                     }
                 }
             });
@@ -119,7 +112,7 @@ public class MainScheduleAdapter extends RecyclerView.Adapter<MainScheduleAdapte
         // 스케줄 고정
         if(mslists.get(position).getSchedulePin() == 1){
             holder.schPin.setImageResource(R.drawable.ic_pin_black_48);
-            MoveItemPin(position);
+            //MoveItemPin(position);
 
         }else{
             holder.schPin.setVisibility(View.GONE);
@@ -131,7 +124,7 @@ public class MainScheduleAdapter extends RecyclerView.Adapter<MainScheduleAdapte
             holder.schCheck.setImageResource(R.drawable.ic_checked_50);
         }
 
-        /*** 클릭 리스너 ***/
+        /*** 클릭 리스너 모음 ***/
         // 스케줄 상태
         holder.schCheck.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -152,7 +145,7 @@ public class MainScheduleAdapter extends RecyclerView.Adapter<MainScheduleAdapte
 
 
     }
-
+    /*** recyclerview item move ***/
     private void MoveItemPin(int position) {
         int pos = position;
         if (pos != RecyclerView.NO_POSITION) {
@@ -165,7 +158,7 @@ public class MainScheduleAdapter extends RecyclerView.Adapter<MainScheduleAdapte
         }
 
     }
-
+    /*** remove pin with dialog ***/
     void dialogPin(int pos){
         AlertDialog.Builder builder = new AlertDialog.Builder(mcontext);
         builder.setTitle(" ");
@@ -173,14 +166,12 @@ public class MainScheduleAdapter extends RecyclerView.Adapter<MainScheduleAdapte
         builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Log.v("pospospospospos","pos : "+pos);
                 MainScheduleDTO msh = mslists.get(pos);
                 if(msh.getSchedulePin() == 1) {
                     msh.setSchedulePin(0);
                     mslists.set(pos,msh);
                 }
                 notifyItemChanged(pos);
-                Log.v("pospospospospos","pos : "+pos);
             }
         });
         builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {

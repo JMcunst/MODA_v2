@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 
 import coms.example.modav2.DTO.MainScheduleDTO;
@@ -91,9 +92,12 @@ public class MainActivity extends AppCompatActivity {
         MainScheduleDTO mc1 = new MainScheduleDTO(3,"코품회의커밋정하기","커밋",
                 new Date(121, 4,17),1,3,3,0);
 
+
         mainSchs.add(ms1);
         mainSchs.add(ms2);
         mainCompleteSchs.add(mc1);
+
+        sortPin(mainSchs);
 
         resAdapter = new MainScheduleAdapter(context, mainSchs);
         recAdapter = new MainScheduleAdapter(context, mainCompleteSchs);
@@ -224,6 +228,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void sortPin(ArrayList<MainScheduleDTO> mainSchs) {
+        Collections.sort(mainSchs);
     }
 
     public String getCurrentDate(){

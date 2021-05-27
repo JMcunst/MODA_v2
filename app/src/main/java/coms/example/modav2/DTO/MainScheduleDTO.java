@@ -2,7 +2,7 @@ package coms.example.modav2.DTO;
 
 import java.util.Date;
 
-public class MainScheduleDTO {
+public class MainScheduleDTO implements Comparable<MainScheduleDTO> {
     private int scheduleId;
     private String sheduleContent;
     private String sheduleMemo;
@@ -85,5 +85,17 @@ public class MainScheduleDTO {
 
     public void setScheduleRotate(int scheduleRotate) {
         this.scheduleRotate = scheduleRotate;
+    }
+
+    /*** pin state 활성화시 상단 ***/
+    @Override
+    public int compareTo(MainScheduleDTO o) {
+        if(this.getSchedulePin() < o.getSchedulePin() ){
+            return 1;
+        }else if (this.getSchedulePin() >= o.getSchedulePin()){
+            return -1;
+        }else{
+            return 0;
+        }
     }
 }
