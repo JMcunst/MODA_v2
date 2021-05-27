@@ -23,6 +23,7 @@ import java.util.Date;
 
 import coms.example.modav2.DTO.MainScheduleDTO;
 import coms.example.modav2.R;
+import utils.RepeatListener;
 
 public class MainScheduleAdapter extends RecyclerView.Adapter<MainScheduleAdapter.ViewHolder> {
     private ArrayList<MainScheduleDTO> mslists = new ArrayList<>();
@@ -62,6 +63,15 @@ public class MainScheduleAdapter extends RecyclerView.Adapter<MainScheduleAdapte
                     }
                 }
             });
+            view.setOnTouchListener(new RepeatListener(100000, 20000000, new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int pos = getLayoutPosition();
+                    if (pos != RecyclerView.NO_POSITION) {
+                        dialogDelete(pos);
+                    }
+                }
+            }));
         }
     }
     @NonNull
@@ -158,6 +168,7 @@ public class MainScheduleAdapter extends RecyclerView.Adapter<MainScheduleAdapte
         }
 
     }
+    /***** dialog part *****/
     /*** remove pin with dialog ***/
     void dialogPin(int pos){
         AlertDialog.Builder builder = new AlertDialog.Builder(mcontext);
@@ -171,6 +182,25 @@ public class MainScheduleAdapter extends RecyclerView.Adapter<MainScheduleAdapte
                     msh.setSchedulePin(0);
                     mslists.set(pos,msh);
                 }
+                notifyItemChanged(pos);
+            }
+        });
+        builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        builder.show();
+    }
+    void dialogDelete(int pos){
+        AlertDialog.Builder builder = new AlertDialog.Builder(mcontext);
+        builder.setTitle(" ");
+        builder.setMessage("스케줄을 제거하시겠습니까?");
+        builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                mslists.remove(pos);
                 notifyItemChanged(pos);
             }
         });

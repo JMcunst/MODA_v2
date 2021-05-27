@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.icu.util.ChineseCalendar;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -180,7 +181,12 @@ public class MainActivity extends AppCompatActivity {
         crd_plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "할일을 추가하겠습니다", Toast.LENGTH_SHORT).show();
+                Log.v("addaddaddadd","addaddaddadd");
+                mainSchs.add(new MainScheduleDTO(4,"추가회의","프로토타입",
+                        new Date(121, 5,2),0,1,1,0));
+
+                resAdapter.notifyDataSetChanged();
+                //Toast.makeText(context, "할일을 추가하겠습니다", Toast.LENGTH_SHORT).show();
             }
         });
         findViewById(R.id.main_complete_sort).setOnClickListener(new View.OnClickListener() {
@@ -229,11 +235,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
+    /*** MainSchedule list 정렬 (Pin 순) ***/
     private void sortPin(ArrayList<MainScheduleDTO> mainSchs) {
         Collections.sort(mainSchs);
     }
 
+    /*** 날짜 계산 (일) ***/
     public String getCurrentDate(){
         nowtime = System.currentTimeMillis();
         date = new Date(nowtime);
@@ -242,7 +249,7 @@ public class MainActivity extends AppCompatActivity {
 
         return nowdate;
     }
-
+    /*** 날짜 계산 (요일) ***/
     public String getCurrentDay(){
         nowtime = System.currentTimeMillis();
         date = new Date(nowtime);
@@ -251,7 +258,7 @@ public class MainActivity extends AppCompatActivity {
 
         return nowday;
     }
-
+    /*** 날짜 계산 (년 월 일) 양력 ***/
     public String getCurrentYearMonthDate(){
         nowtime = System.currentTimeMillis();
         date = new Date(nowtime);
@@ -260,7 +267,7 @@ public class MainActivity extends AppCompatActivity {
 
         return nowymd;
     }
-    /***음력 월.일 계산***/
+    /*** 날짜 계산 (년 월 일) 음력 ***/
     public static String getSolarToLunar(String yyyymmdd) {
         ChineseCalendar cc = new ChineseCalendar();
         Calendar cal = Calendar.getInstance();
